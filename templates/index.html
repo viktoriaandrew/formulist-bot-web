@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Открытие кейсов и ставки на Формулу 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Подключение шрифтов и стилей -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Шапка сайта -->
+        <header>
+            <h1>Открытие кейсов и ставки на Формулу 1</h1>
+            <div class="balance">
+                Ваш баланс: <span id="balance">{{ balance }}</span> монет
+            </div>
+            <div class="username">Привет, {{ username }}!</div>
+        </header>
+
+        <!-- Кнопки действий -->
+        <div class="buttons">
+            <button id="leaderboard-button" class="btn">🏆 Лидеры</button> <!-- Новая кнопка с эмодзи -->
+            <button id="show-bets-button" class="btn">Ставка на Формулу 1</button>
+            <button id="open-case-button" class="btn">Открыть кейс</button>
+        </div>
+
+        <!-- Секция кейсов -->
+        <section id="case-section" style="display: none;">
+            <div id="animation" class="animation">
+                <div class="animation-strip" id="animation-strip"></div>
+            </div>
+            <div id="result" class="result"></div>
+        </section>
+
+        <!-- Секция ставок на Формулу 1 -->
+        <section id="bets-section" style="display: none;">
+            <h2>Сделать ставку на победителя Гран-при</h2>
+            <div class="race-info">
+                <p id="race-info-text">Загрузка информации о гонке...</p>
+            </div>
+
+            <!-- Форма для ставок -->
+            <div class="bet-form">
+                <select id="driver-select">
+                    <!-- Гонщики будут загружены здесь -->
+                </select>
+                <div id="odds-display">Коэффициент: <span id="odds-value">-</span></div>
+                <input type="number" id="bet-amount" placeholder="Сумма ставки" min="1" max="{{ balance }}" value="1">
+                <input type="range" id="bet-slider" min="1" max="{{ balance }}" value="1">
+                <div id="potential-winnings">Потенциальный выигрыш: <span id="winnings-value">-</span> монет</div>
+                <button id="place-bet-button">Сделать ставку</button>
+            </div>
+
+            <!-- Список активных ставок -->
+            <div id="bets-list">
+                <h3>Ваши активные ставки</h3>
+                <div id="bets-items"></div>
+            </div>
+        </section>
+
+        <!-- Секция таблицы лидеров -->
+        <section id="leaderboard-section" style="display: none;">
+            <h2>Топ игроков по монетам</h2>
+            <table id="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Место</th>
+                        <th>Пользователь</th>
+                        <th>Баланс</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Данные будут загружены динамически -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- Скрипты -->
+    <script>
+        const userId = '{{ user_id }}';
+    </script>
+    <script src="/static/script.js"></script>
+</body>
+</html>
